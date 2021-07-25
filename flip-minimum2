@@ -1,0 +1,31 @@
+#!/bin/bash -x
+head=0
+tail=0
+randomCheck=$((RANDOM%2))
+count=1
+while [ $count -le 21 ]
+do
+   if [ $randomCheck -eq 0 ]
+   then
+       head=$(($head+1))
+   else
+       tail=$(($tail+1))
+    fi
+    ((count++))
+done
+if [ $head -gt $tail ]
+then
+     echo "head wins $(($head-$tail))"
+elif [ $tail -gt $head ]
+then
+     echo "tail wins $(($tail-$head))"
+else
+     echo "tie"
+     if [ $(($head-$tail)) -gt 2 ]
+     then
+          echo "Head wins by 2 points"
+     elif [ $(($tail-$head)) -gt 2 ]
+     then
+          echo "Tail wins by 2 points"
+      fi
+fi
